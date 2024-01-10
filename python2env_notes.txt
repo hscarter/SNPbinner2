@@ -1,0 +1,19 @@
+Eventually want this to be a yaml file but for now....
+
+
+conda create -n snpbin2 python=2.7
+conda activate snpbin2
+pip install ~/Documents/Github/SNPbinner2
+# installed pillow-6.2.2 snpbinner-0.2.3
+
+
+
+
+
+
+
+name: snpbin2
+channels:
+	- python=2.7
+dependencies:
+	-

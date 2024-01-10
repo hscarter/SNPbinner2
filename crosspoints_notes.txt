@@ -1,0 +1,70 @@
+#### testing out snpbinner2 crosspoints ####
+
+# within sample_files make new dir "test_run_outputs"
+# from test_run_outputs, and within snpbin2 env
+
+snpbinner crosspoints --input ../crosspoints_in.tsv --output . --min_length 15
+# import error no module named numpy
+
+# after installing numpy
+# Error one of the arguments -m/--min-length -r/--min-ration required
+
+snpbinner crosspoints --input ../crosspoints_in.tsv --output . --min-length 15
+# error is a directory "."
+
+snpbinner crosspoints --input ../crosspoints_in.tsv --output crosspoints_out.csv --min-length 15
+# prints a bunch of the column names (i think) to the console
+
+# created a csv file that has the printed col names, a/b/h, position number
+# looks identical to the sample file!
+
+#### CONVERTING crosspoints.py from 2to3 within SNPbinner3 ####
+
+(base) andrewblock@EDMLOANC02W4D3NHTD6 snpbinner3 % 2to3 crosspoints.py
+/Users/andrewblock/anaconda3/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.main import main
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Refactored crosspoints.py
+--- crosspoints.py	(original)
++++ crosspoints.py	(refactored)
+@@ -12,7 +12,7 @@
+         if not os.path.exists(output_folder):
+             os.makedirs(output_folder)
+         for file in input_list:
+-            print("Determining crosspoints for: "+file)
++            print(("Determining crosspoints for: "+file))
+             out_file = os.path.join(output_folder,os.path.basename(file)+".crosp.csv")
+             try:
+ 
+@@ -319,7 +319,7 @@
+ def _get_file_stats(filename):
+     '''Counts coulumns[-1 header](individual_count), rows[-1 header](snp_count), and returns the last row header (last_index) from a TSV.'''
+     individual_count = 0
+-    print filename
++    print(filename)
+     with open(filename, "r") as f:
+         title_line = ""
+         while title_line.strip()=="" or title_line.startswith("#"):
+RefactoringTool: Files that need to be modified:
+RefactoringTool: crosspoints.py
+
+# I don't see any changes between the two files
+
+# making test_outputs folder in sample_files within SNPbinner3 and working from there
+
+python ~/Documents/GitHub/SNPbinner3/snpbinner3 crosspoints --input ../crosspoints_in.tsv --output crosspoints_out.csv --min-length 15
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/andrewblock/Documents/GitHub/SNPbinner3/snpbinner3/__main__.py", line 3, in <module>
+    import __init__ as snpbinner
+  File "/Users/andrewblock/Documents/GitHub/SNPbinner3/snpbinner3/__init__.py", line 2, in <module>
+    import crosspoints, bins, visualize
+  File "/Users/andrewblock/Documents/GitHub/SNPbinner3/snpbinner3/crosspoints.py", line 322
+    print filename
+    ^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
