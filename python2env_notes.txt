@@ -6,6 +6,17 @@ conda activate snpbin2
 pip install ~/Documents/Github/SNPbinner2
 # installed pillow-6.2.2 snpbinner-0.2.3
 
+# after trying to run crosspoints, error about missing numpy
+# numpy is on version 1.26.0
+# numpy 1.15.0 for py2? or 1.14 maybe
+# says pip install numpy on Python2 will continue to give last working release in perpetuity...
+# not sure I believe that
+
+pip install numpy=1.14
+# error invalid requirement numpy=1.14, hint = is not a valid argument
+
+pip install numpy
+# successfully installed numpy 1.16.6, didn't change python version
 
 
 
